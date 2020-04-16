@@ -10,8 +10,10 @@ def index():
     
 @app.route("/cscl")
 def lib_view():
-    book = db[0]
-    return render_template("library.html", book=book,indx=0, max_indx= len(db)-1)    
+    return render_template(
+        "index.html",
+        books = db
+    )    
 
 @app.route("/cscl/<int:indx>")
 def lib_page_view(indx):

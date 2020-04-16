@@ -7,8 +7,15 @@
 </head>
 <body>
 	<h1>Welcome</h1>
+	<button>
+		<a href=" {{ url_for('lib_view') }}">
+		Home
+		</a>
+	</button>
+	<p><img src="{{book.image_url_s}}"></p>
 	<p>Title: {{book.title}}</p>
 	<p>Author: {{book.author}}</p>
+	
 	<p>
 		{% if indx > 0 %}
 		<button>
