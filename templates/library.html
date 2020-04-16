@@ -4,39 +4,35 @@
 	<html lang="en">
 	<meta charset="utf-8"/>
 	<title>Library</title>
+	<link rel="stylesheet" href="../static/cscl.css">
 </head>
 <body>
+<div id="container">
 	<h1>Welcome</h1>
-	<button>
-		<a href=" {{ url_for('lib_view') }}">
+		<a class="alnk" href=" {{ url_for('lib_view') }}">
 		Home
 		</a>
-	</button>
-	<p><img src="{{book.image_url_s}}"></p>
-	<p>Title: {{book.title}}</p>
-	<p>Author: {{book.author}}</p>
-	
+	<div id="jess">
+		<p><img src="{{book.image_url_l}}" height= "475" width="290"></p>
+		<p>Title: {{book.title}}</p>
+		<p>Author: {{book.author}}</p>
+	</div>
 	<p>
 		{% if indx > 0 %}
-		<button>
-			<a href=" {{ url_for('lib_page_view', indx = indx - 1) }}">
+			<a class="alnk" href=" {{ url_for('lib_page_view', indx = indx - 1) }}">
 			Prev book
 			</a>
-		</button>
 		{% endif %}
 		{% if indx < max_indx %}
-		<button>
-			<a href=" {{ url_for('lib_page_view', indx = indx + 1) }}">
+			<a class="alnk" href=" {{ url_for('lib_page_view', indx = indx + 1) }}">
 			Next book
 			</a>
-		</button>
 		{% else %}
-		<button>
-			<a href=" {{ url_for('lib_page_view', indx = 0) }}">
+			<a class="alnk"href=" {{ url_for('lib_page_view', indx = 0) }}">
 			Start Over
 			</a>
-		</button>
 		{% endif %}
 	</p>
+</div><!--container-->
 </body>
 </html>
