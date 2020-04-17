@@ -4,10 +4,14 @@
 	CSCL - Home
 {% endblock %}
 {% block body %}
-	<h1>Welcome</h1>
+<div>
 	<a class='alnk' style="float:right;" href="{{ url_for('admin') }}">
 		Admin
 	</a>
+	<br>
+	<h1>Welcome</h1>
+</div>
+<div>
 	<ul>
 		{% for book in books %}
 		<li style="display:inline">
@@ -17,4 +21,5 @@
 		</li>
 		{% endfor %}
 	</ul>
+</div>
 {% endblock %}

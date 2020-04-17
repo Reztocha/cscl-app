@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
 {% block title %}
-	CSCL - Admin
+	CSCL - Admin - {{book.title}}
 {% endblock %}
 {% block body %}
-	<h1>Welcome, Admin</h1>
-		<a class="alnk" href=" {{ url_for('admin') }}">
-		Admin Home
-		</a>
+	<a class="alnk" style="float:right;" href=" {{ url_for('admin') }}">
+			Admin Home
+	</a>
+	<br>
+	<h1>Catalog</h1>
 	<div id="book-frame">
 		<p><img class='book-img-l' src="{{book.image_url_l}}" alt="book image" height= "475" width="290"></p>
 		<p>Title: {{book.title}}</p>

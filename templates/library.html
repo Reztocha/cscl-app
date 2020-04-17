@@ -4,11 +4,14 @@
 	CSCL - {{book.title}}
 {% endblock %}
 {% block body %}
-	<h1>Welcome</h1>
-	<a class="alnk" href=" {{ url_for('lib_view') }}">
+<div>
+	<a class="alnk" style="float:right;" href=" {{ url_for('lib_view') }}">
 		Home
 	</a>
-	<div id="book-frame">
+	<br>
+	<h1>Catalog</h1>
+</div>
+<div id="book-frame">
 		<p>
 			<img class="book-img-l" alt="book image" src="{{book.image_url_l}}" height= "475" width="290">
 		</p>

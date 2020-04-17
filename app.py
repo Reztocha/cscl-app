@@ -51,21 +51,25 @@ def admin_lib_view(indx):
 @app.route('/admin/add_book', methods=["GET", "POST"])
 def add_book():
     if request.method == 'POST':
-        book = {
-            "isbn": request.form['isbn'],
-            "title": request.form['title'],
-            "author": request.form['author'],
-            "publication_year": request.form['publication_year'], 
-            "publisher": request.form['publisher'], 
-            "image_url_s": request.form['image_url_s'], 
-            "image_url_m": request.form['image_url_m'], 
-            "image_url_l": request.form['image_url_l'], 
-            "copies": request.form['copies'], 
-            "available": request.form['available']
-        }
+        books = ["isbn", "title", "author", "publication_year", "publisher", "image_url_s", "image_url_m","image_url_l", "copies", "available"] 
+        book = {}
+        for attr in books:
+            if request.form[attr] == '':
+                book[attr] = ""
+                if attr == "image_url_s":
+                    book[attr] = "../static/thumbz-s.jpg"
+                if attr == "image_url_m":
+                    book[attr] = "../static/thumbz-m.jpg"
+                if attr == "image_url_l":
+                    book[attr] = "../static/thumbz-l.jpg"
+            else:
+                if(attr == "copies" or attr == "available"):
+                    book[attr] = int(request.form[attr])
+                else:
+                    book[attr] = request.form[attr]
         db.append(book)
         save_db()
-        return redirect(url_for('lib_page_view',indx= len(db)-1))
+        return redirect(url_for('admin_lib_view',indx= len(db)-1))
     else:
         return render_template("add_book.html")
     
@@ -82,7 +86,27 @@ def remove_book(indx):
 def edit_book(indx):
     try:
         book = db[indx]
-        return render_template("edit_book.html", book=book, indx=indx)
+        if request.method == 'POST':
+            books = ["isbn", "title", "author", "publication_year", "publisher", "image_url_s", "image_url_m","image_url_l", "copies", "available"] 
+            book = {}
+            for attr in books:
+                if request.form[attr] == '':
+                    book[attr] = ""
+                    if attr == "image_url_s":
+                        book[attr] = "../static/thumbz-s.jpg"
+                    if attr == "image_url_m":
+                        book[attr] = "../static/thumbz-m.jpg"
+                    if attr == "image_url_l":
+                        book[attr] = "../static/thumbz-l.jpg"
+                else:
+                    if(attr == "copies" or attr == "available"):
+                        book[attr] = int(request.form[attr])
+                    else:
+                        book[attr] = request.form[attr]
+            save_db()
+            return redirect(url_for('admin'))
+        else:
+            return render_template("edit_book.html", book=book, indx=indx)
     except IndexError:
         abort(404)
         

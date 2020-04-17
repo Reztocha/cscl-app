@@ -1,18 +1,54 @@
 {% extends "base.html" %}
 
 {% block title %}
-	CSCL - Edit Book
+	CSCL - Edit Book - {{book.title}}
 {% endblock %}
 {% block body %}
-	<h1>Edit Book</h1>
-	<a class="alnk" href=" {{ url_for('admin') }}">
+	<a class="alnk" style="float:right;" href=" {{ url_for('admin') }}">
 		Admin Home
 	</a>
+	<br>
+	<h1>Edit Book</h1>
+	
 	<div id="book-frame">
-		<p><img class='book-img-l' src="{{ book.image_url_l }}" alt="book image" height= "475" width="290"></p>
-		<p>Title: {{book.title}}</p>
-		<p>Author: {{book.author}}</p>
-		<p>Available: {{book.available}}</p>
-		<p>Copies: {{book.copies}}</p>
+		<p>
+		<img class='book-img-l' src="{{ book.image_url_l }}" alt="book image" height= "475" width="290">
+		</p>
 	</div>
+	<form id="niceform" method="post">
+		<p>
+			<label>Title:</label>
+			<input type='text' value="{{book.title}}" name='title' required>
+		<br>
+			<label>Author: </label>
+			<input type='text' value="{{book.author}}" name='author' required>
+		<br>
+			<label>ISBN:</label>
+			<input type='number' value="{{book.isbn}}" name="isbn">
+		<br>
+			<label>Publication Year:</label>
+			<input type='number' value="{{book.publication_year}}" name="publication_year" maxlength="4">
+		<br>
+			<label>Publisher:</label>
+			<input type='text' value="{{book.publisher}}" name="publisher">
+		<br>
+			<label>Image Url (Small):</label>
+			<input type='url' value="{{book.image_url_s}}" name="image_url_s">
+		<br>
+			<label>Image Url (Medium):</label>
+			<input type='url' value="{{book.image_url_m}}" name="image_url_m">
+		<br>
+			<label>Image Url (Large):</label>
+			<input type='url' value="{{book.image_url_l}}" name="image_url_l">
+		<br>
+			<label>Copies:</label>
+			<input type='number' value="{{book.copies}}" name="copies" required>
+		<br>
+			<label>Available:</label>
+			<input type='number' value="{{book.available}}" name="available" required>
+		<br>
+			<button class="alnk" type="submit">Update</button>
+		</p>
+	</form>
+	
 {% endblock %}

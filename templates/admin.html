@@ -4,13 +4,17 @@
 	CSCL - Admin
 {% endblock %}
 {% block body %}
-	<h1>Welcome, Admin</h1>
+<div>
 	<a class='alnk' style="float:right;" href="{{ url_for('add_book', indx=indx) }}">
 		Add Book
 	</a>
-	<a class ='alnk' style="float:right;" href="{{ url_for('lib_view') }}">
+	<a class ='alnk'  style="float:right;"href="{{ url_for('lib_view') }}">
 		Library Home
 	</a>
+	<br>
+	<h1>Welcome, Admin</h1>
+</div>
+<div>
 	<ul>
 		{% for book in books %}
 		<li style="display:inline">
@@ -20,4 +24,5 @@
 		</li>
 		{% endfor %}
 	</ul>
+</div>
 {% endblock %}

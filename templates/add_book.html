@@ -4,43 +4,46 @@
 	CSCL - Add Book
 {% endblock %}
 {% block body %}
-	<a href="{{ url_for('admin') }}">
-		Admin
-	</a>
+<div>
+	<a class="alnk" style="float:right;" href="{{ url_for('admin') }}">
+		Admin Home
+	</a><br>
 	<h1>Add a new book</h1>
+	
 	<form method='post'>
 		<p>
 			<label>Title:</label>
-			<input type='text' name='title'>
+			<input type='text' name='title' required>
 		<br>
 			<label>Author: </label>
-			<input type='text' name='author'>
+			<input type='text' name='author' required>
 		<br>
 			<label>ISBN:</label>
-			<input type='text' name="isbn">
+			<input type='number' name="isbn">
 		<br>
 			<label>Publication Year:</label>
-			<input type='text' name="publication_year">
+			<input type='number' name="publication_year" maxlength="4">
 		<br>
 			<label>Publisher:</label>
 			<input type='text' name="publisher">
 		<br>
 			<label>Image Url (Small):</label>
-			<input type='text' name="image_url_s">
+			<input type='url' name="image_url_s">
 		<br>
 			<label>Image Url (Medium):</label>
-			<input type='text' name="image_url_m">
+			<input type='url' name="image_url_m">
 		<br>
 			<label>Image Url (Large):</label>
-			<input type='text' name="image_url_l">
+			<input type='url' name="image_url_l">
 		<br>
 			<label>Copies:</label>
-			<input type='text' name="copies">
+			<input type='number' name="copies" required>
 		<br>
 			<label>Available:</label>
-			<input type='text' name="available">
+			<input type='number' name="available" required>
 		<br>
 			<button class="alnk" type="submit">Add</button>
 		</p>
 	</form>
+</div>
 {% endblock %}
