@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<html lang="en">
-	<meta charset="utf-8"/>
-	<title>Library</title>
-	<link rel="stylesheet" href="../static/cscl.css">
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}
+	CSCL - Add Book
+{% endblock %}
+{% block body %}
+	<a href="{{ url_for('admin') }}">
+		Admin
+	</a>
 	<h1>Add a new book</h1>
 	<form method='post'>
 		<p>
@@ -43,5 +43,4 @@
 			<button class="alnk" type="submit">Add</button>
 		</p>
 	</form>
-</body>
-</html>
+{% endblock %}

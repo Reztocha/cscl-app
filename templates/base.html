@@ -3,15 +3,13 @@
 <head>
 	<html lang="en">
 	<meta charset="utf-8"/>
-	<title>Library</title>
-	<link rel="stylesheet" href="../static/cscl.css">
-	{% block head %}
-	
-	{% endblock %}
+	<title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='cscl.css') }}">
 </head>
-<body>
+<body class='fade-in'>
+<div id="container">
 	{% block body %}
-	
 	{% endblock %}
+</div><!--container-->
 </body>
 </html>

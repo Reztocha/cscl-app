@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}
+	CSCL - Edit Book
+{% endblock %}
+{% block body %}
+	<h1>Edit Book</h1>
+	<a class="alnk" href=" {{ url_for('admin') }}">
+		Admin Home
+	</a>
+	<div id="book-frame">
+		<p><img class='book-img-l' src="{{ book.image_url_l }}" alt="book image" height= "475" width="290"></p>
+		<p>Title: {{book.title}}</p>
+		<p>Author: {{book.author}}</p>
+		<p>Available: {{book.available}}</p>
+		<p>Copies: {{book.copies}}</p>
+	</div>
+{% endblock %}

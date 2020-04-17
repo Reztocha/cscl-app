@@ -1,11 +1,11 @@
 from flask import (Flask, render_template,abort,redirect,url_for,request)
 app = Flask(__name__)
 from model import db, save_db
+
 @app.route('/')
 def index():
     return render_template(
-        'index.html', 
-        message = "Next time on Yu-Gi-Oh!..."
+        'splash.html'
     )
     
 @app.route("/cscl")
@@ -13,23 +13,48 @@ def lib_view():
     return render_template(
         "index.html",
         books = db
-    )    
+    )
 
-@app.route("/cscl/<int:indx>")
+@app.route("/cscl/<int:indx>", methods=["GET", "POST"])
 def lib_page_view(indx):
     try:
         book = db[indx]
-        return render_template("library.html", book=book, indx=indx, max_indx= len(db)-1)
+        if request.method == 'POST':
+            if request.form['available'] == 'Checkout':
+                if book["available"] > 0:
+                    book["available"] = int(book["available"]) - 1
+            elif request.form['available'] == 'Return':
+                if book["copies"] > book["available"]:
+                    book["available"] = int(book["available"]) + 1
+            else:
+                pass # ?
+            save_db()
+        return render_template("library.html", book=book, indx=indx, max_indx=len(db)-1)
     except IndexError:
         abort(404)
         
-@app.route('/add_book', methods=["GET", "POST"])
+@app.route('/admin')
+def admin():
+    return render_template(
+        "admin.html",
+        books = db
+    )
+
+@app.route("/admin/<int:indx>")
+def admin_lib_view(indx):
+    try:
+        book = db[indx]
+        return render_template("admin_library.html", book=book, indx=indx, max_indx=len(db)-1)
+    except IndexError:
+        abort(404)
+
+@app.route('/admin/add_book', methods=["GET", "POST"])
 def add_book():
     if request.method == 'POST':
         book = {
+            "isbn": request.form['isbn'],
             "title": request.form['title'],
             "author": request.form['author'],
-            "isbn": request.form['isbn'],
             "publication_year": request.form['publication_year'], 
             "publisher": request.form['publisher'], 
             "image_url_s": request.form['image_url_s'], 
@@ -44,6 +69,22 @@ def add_book():
     else:
         return render_template("add_book.html")
     
+@app.route("/admin/remove_book/<int:indx>", methods=['GET','POST'])
+def remove_book(indx):
+    if request.method == 'POST':
+        del db[indx]
+        save_db()
+        return redirect(url_for('admin'))
+    else:
+        return render_template("remove_book.html", book=db[indx])
 
+@app.route("/admin/edit_book/<int:indx>", methods=['GET','POST'])
+def edit_book(indx):
+    try:
+        book = db[indx]
+        return render_template("edit_book.html", book=book, indx=indx)
+    except IndexError:
+        abort(404)
+        
 if __name__ == '__main__':
     app.run(debug=True)

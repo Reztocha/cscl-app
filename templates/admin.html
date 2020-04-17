@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+	CSCL - Admin
+{% endblock %}
+{% block body %}
+	<h1>Welcome, Admin</h1>
+	<a class='alnk' style="float:right;" href="{{ url_for('add_book', indx=indx) }}">
+		Add Book
+	</a>
+	<a class ='alnk' style="float:right;" href="{{ url_for('lib_view') }}">
+		Library Home
+	</a>
+	<ul>
+		{% for book in books %}
+		<li style="display:inline">
+			<a href="{{ url_for('admin_lib_view', indx=loop.index0) }}" style="text-decoration:none">
+				<img class='book-img-s' src="{{book.image_url_s}}" alt="book image" height="75" width="50">
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

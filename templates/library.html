@@ -1,38 +1,47 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<html lang="en">
-	<meta charset="utf-8"/>
-	<title>Library</title>
-	<link rel="stylesheet" href="../static/cscl.css">
-</head>
-<body>
-<div id="container">
+{% extends "base.html" %}
+
+{% block title %}
+	CSCL - {{book.title}}
+{% endblock %}
+{% block body %}
 	<h1>Welcome</h1>
-		<a class="alnk" href=" {{ url_for('lib_view') }}">
+	<a class="alnk" href=" {{ url_for('lib_view') }}">
 		Home
-		</a>
-	<div id="jess">
-		<p><img src="{{book.image_url_l}}" height= "475" width="290"></p>
+	</a>
+	<div id="book-frame">
+		<p>
+			<img class="book-img-l" alt="book image" src="{{book.image_url_l}}" height= "475" width="290">
+		</p>
 		<p>Title: {{book.title}}</p>
 		<p>Author: {{book.author}}</p>
 	</div>
-	<p>
+	<div>
 		{% if indx > 0 %}
-			<a class="alnk" href=" {{ url_for('lib_page_view', indx = indx - 1) }}">
-			Prev book
+			<a class="alnk" href="{{ url_for('lib_page_view', indx = indx - 1) }}">
+				<strong><</strong>
 			</a>
 		{% endif %}
 		{% if indx < max_indx %}
-			<a class="alnk" href=" {{ url_for('lib_page_view', indx = indx + 1) }}">
-			Next book
+			<a class="alnk" href="{{ url_for('lib_page_view', indx = indx + 1) }}">
+				<strong>></strong>
 			</a>
 		{% else %}
-			<a class="alnk"href=" {{ url_for('lib_page_view', indx = 0) }}">
-			Start Over
+			<a class="alnk" href="{{ url_for('lib_page_view', indx = 0) }}">
+				Start Over
 			</a>
 		{% endif %}
+	<p>
+		Copies Available: {{ book.available }}
 	</p>
-</div><!--container-->
-</body>
-</html>
+	</div>
+	{% if book.available > 0 %}
+		<form method="post">
+			<input class="alnk" name="available" value="Checkout" type="submit">
+		</form>
+	{% endif %}
+	{% if book.available < book.copies %}
+		<form method="post">
+			<input class="alnk" name="available" value="Return" type="submit">
+		</form>
+	{% endif %}
+{% endblock %}

@@ -1,18 +1,20 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block head %}
-<h1>Welcome</h1>
-<ul>
-	{% for book in books %}
-	<li style="display:inline">
-		<a href="{{ url_for('lib_page_view', indx=loop.index0) }}" style="text-decoration:none">
-			<img src="{{book.image_url_s}}">
-		</a>
-	</li>
-	{% endfor %}
-</ul>
+{% block title %}
+	CSCL - Home
 {% endblock %}
-
 {% block body %}
-
+	<h1>Welcome</h1>
+	<a class='alnk' style="float:right;" href="{{ url_for('admin') }}">
+		Admin
+	</a>
+	<ul>
+		{% for book in books %}
+		<li style="display:inline">
+			<a href="{{ url_for('lib_page_view', indx=loop.index0) }}" style="text-decoration:none">
+				<img class='book-img-m' alt="book image" src="{{book.image_url_m}}" height="160" width="100">
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
 {% endblock %}

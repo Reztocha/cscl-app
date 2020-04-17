@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+	CSCL - Remove Book
+{% endblock %}
+{% block body %}
+	<h1>Remove Book</h1>
+	<div id="book-frame">
+		<p><img class='book-img-l' alt="book image" src="{{ book.image_url_l }}" height= "475" width="290"></p>
+		<p>Title: {{book.title}}</p>
+		<p>Author: {{book.author}}</p>
+	</div>
+	<h2>Are you sure?</h2>
+	<form method="post">
+		<button class="alnk" type="submit">
+			Yes
+		</button>
+		<a class="alnk" href="{{ url_for('admin') }}">
+			No
+		</a>
+	</form>
+{% endblock %}

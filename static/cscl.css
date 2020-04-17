@@ -9,10 +9,38 @@ body * {
 }
 #container {
 	margin: auto;
+	padding: 3px;
+	text-align: center;
+	
+	background-color: #fafaf9;
 }
-#jess {
+#book-frame {
 	background-color: #f0f2ff;
 	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.centered {
+	padding: 100px;
+	width: 300px;
+	text-align: center;
+	background-color: #fafaf9;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.book-img-s {
+	background-image: url('thumbz-s.jpg');
+	background-repeat: no-repeat;
+}
+.book-img-m {
+	background-image: url('thumbz-m.jpg');
+	background-repeat: no-repeat;
+}
+.book-img-l {
+	background-image: url('thumbz-l.jpg');
+	background-repeat: no-repeat;
 }
 a {
 	text-decoration: none;
@@ -48,4 +76,54 @@ label {
     text-align: right;
 	padding: 7px 7px 5px 0px;
     float:left;
+}
+/*Animation*/
+.fade-in {
+  animation: fadeIn ease 3s;
+  -webkit-animation: fadeIn ease 3s;
+  -moz-animation: fadeIn ease 3s;
+  -o-animation: fadeIn ease 3s;
+  -ms-animation: fadeIn ease 3s;
+}@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
 }
