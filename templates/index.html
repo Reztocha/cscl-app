@@ -15,7 +15,7 @@
 	<ul>
 		{% for book in books %}
 		<li style="display:inline">
-			<a href="{{ url_for('lib_page_view', indx=loop.index0) }}" style="text-decoration:none">
+			<a href="{{ url_for('lib_page_view', indx=loop.index0) }}">
 				<img class='book-img-m' alt="book image" src="{{book.image_url_m}}" height="160" width="100">
 			</a>
 		</li>

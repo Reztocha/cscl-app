@@ -87,8 +87,7 @@ def edit_book(indx):
     try:
         book = db[indx]
         if request.method == 'POST':
-            books = ["isbn", "title", "author", "publication_year", "publisher", "image_url_s", "image_url_m","image_url_l", "copies", "available"] 
-            book = {}
+            books = ["isbn", "title", "author", "publication_year", "publisher", "image_url_s", "image_url_m","image_url_l", "copies", "available"]
             for attr in books:
                 if request.form[attr] == '':
                     book[attr] = ""
@@ -100,7 +99,14 @@ def edit_book(indx):
                         book[attr] = "../static/thumbz-l.jpg"
                 else:
                     if(attr == "copies" or attr == "available"):
-                        book[attr] = int(request.form[attr])
+                        if int(request.form[attr]) <= 0:
+                            book[attr] = 0
+                        if int(request.form["copies"]) == 0:
+                                book["available"] = 0
+                        if int(request.form["copies"]) < int(request.form["available"]):
+                            return render_template("edit_book.html", book=book, indx=indx)
+                        else:
+                            book[attr] = int(request.form[attr])
                     else:
                         book[attr] = request.form[attr]
             save_db()

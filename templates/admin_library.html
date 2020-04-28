@@ -17,12 +17,12 @@
 	<div>
 		{% if indx > 0 %}
 			<a class="alnk" href=" {{ url_for('admin_lib_view', indx = indx - 1) }}">
-			Prev book
+			<
 			</a>
 		{% endif %}
 		{% if indx < max_indx %}
 			<a class="alnk" href=" {{ url_for('admin_lib_view', indx = indx + 1) }}">
-			Next book
+			>
 			</a>
 		{% else %}
 			<a class="alnk"href=" {{ url_for('admin_lib_view', indx = 0) }}">
@@ -31,11 +31,11 @@
 		{% endif %}
 	</div>
 	<div>
-		<a class="alnk" href="{{ url_for('remove_book', indx=indx) }}">
-			Remove Book
-		</a>
 		<a class="alnk" href="{{ url_for('edit_book', indx=indx) }}">
 			Edit 
+		</a>
+		<a class="alnk" href="{{ url_for('remove_book', indx=indx) }}">
+			Remove Book
 		</a>
 	</div>
 {% endblock %}
