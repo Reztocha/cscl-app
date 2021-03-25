@@ -16,7 +16,7 @@ MarkupSafe==1.1.1
 mistune==0.8.4
 pymongo==3.10.1
 pyrsistent==0.16.0
-PyYAML==5.3.1
+PyYAML==5.4
 six==1.14.0
 virtualenv==20.0.17
 virtualenvwrapper-win==1.2.6
